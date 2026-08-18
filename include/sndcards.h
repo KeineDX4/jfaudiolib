@@ -43,6 +43,9 @@ typedef enum
    ASS_FluidSynth,
    ASS_ALSA,
    ASS_SDL,
+#ifdef __SYMBIAN32__
+   ASS_Belle,   /* Symbian Belle (CMMFDevSound) */
+#endif
    ASS_NumSoundCards,
    ASS_AutoDetect = -2
    } soundcardnames;

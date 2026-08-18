@@ -85,7 +85,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #define MixBufferSize     256
 
+#ifdef __SYMBIAN32__
+/* v42 (Belle): ring grown 4 pages (4096 B @44100/stereo) -> 24 pages
+   (24576 B). DevSound pulls 12288-byte buffers on the E7; a 4-page ring
+   turned over inside a single fill, so each DS fill read the same pages twice
+   (echo). 24 pages = 2 full DevSound buffers, no page re-read, plus headroom
+   for producer stalls. MV_NumberOfBuffers = TotalBufferSize/MV_BufferSize
+   = 24576/1024 = 24. */
+#define NumberOfBuffers   96
+#else
 #define NumberOfBuffers   16
+#endif
 #define TotalBufferSize   ( MixBufferSize * NumberOfBuffers )
 
 #define PI                3.1415926536
