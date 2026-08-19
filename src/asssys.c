@@ -20,9 +20,16 @@
 
 #include "asssys.h"
 
+#ifdef __SYMBIAN32__
+# include "belle_qtglue.h"   /* belle_qt_sleep */
+#endif
+
 #ifdef _WIN32
 # define WIN32_LEAN_AND_MEAN
 # include <windows.h>
+# include <stdarg.h>
+# include <stdio.h>
+#elif defined __SYMBIAN32__
 # include <stdarg.h>
 # include <stdio.h>
 #else
@@ -37,6 +44,11 @@ static void _ASS_MessageOutputString(const char *str)
 {
 #ifdef _WIN32
     OutputDebugString(str);
+#elif defined __SYMBIAN32__
+    /* v-final: no debug output channel. On the game path ASS_MessageOutputString
+       is later replaced by buildputs (game.c), so jfaudiolib messages go into the
+       engine's own sw.log; until then they are dropped silently. */
+    (void)str;
 #else
     fputs(str, stderr);
 #endif
@@ -48,6 +60,9 @@ void ASS_Sleep(int msec)
 {
 #ifdef _WIN32
 	Sleep(msec);
+#elif defined __SYMBIAN32__
+	/* No select()/usleep() on Symbian; belle_qt_sleep is a QThread::msleep */
+	belle_qt_sleep(msec);
 #else
 	struct timeval tv;
 

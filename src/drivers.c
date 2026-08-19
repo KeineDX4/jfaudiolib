@@ -30,6 +30,9 @@
 //#define NO_XAUDIO2
 
 #include "driver_nosound.h"
+#ifdef __SYMBIAN32__
+# include "driver_belle.h"   /* Symbian Belle (CMMFDevSound) */
+#endif
 
 #ifdef HAVE_SDL
 # include "driver_sdl.h"
@@ -278,6 +281,27 @@ static struct {
         UNSUPPORTED_COMPLETELY,
     #endif
     },
+
+#ifdef __SYMBIAN32__
+    // Symbian Belle (CMMFDevSound)
+    {
+        "Belle",
+    #if !defined NO_BELLE
+        BelleDrv_GetError,
+        BelleDrv_ErrorString,
+        BelleDrv_PCM_Init,
+        BelleDrv_PCM_Shutdown,
+        BelleDrv_PCM_BeginPlayback,
+        BelleDrv_PCM_StopPlayback,
+        BelleDrv_PCM_Lock,
+        BelleDrv_PCM_Unlock,
+        UNSUPPORTED_CD,
+        UNSUPPORTED_MIDI,
+    #else
+        UNSUPPORTED_COMPLETELY,
+    #endif
+    },
+#endif
 };
 
 
