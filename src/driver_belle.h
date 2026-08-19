@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2026 JFSW -> Symbian Belle port
+ Copyright (C) 2026 Symbian Belle (CMMFDevSound) audio driver
 
  Sound output driver for the Symbian Belle (CMMFDevSound) target.
  The PCM half of this driver is wired into jfaudiolib's SoundDrivers[] table

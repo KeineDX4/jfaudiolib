@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2026 JFSW -> Symbian Belle port
+ Copyright (C) 2026 Symbian Belle (CMMFDevSound) audio driver
 
  Native-MMF PCM driver for jfaudiolib/multivoc.
 

@@ -21,7 +21,7 @@
 /**
  * OggVorbis source support for MultiVoc
  *
- * JFSW-Symbian: the Symbian GCCE toolchain has no libvorbis, so the Belle
+ * The Symbian GCCE toolchain has no libvorbis, so the Belle
  * build compiles vorbis_belle.c (stb_vorbis, background decoder thread +
  * ring) instead. Every other platform keeps the original libvorbisfile
  * implementation below.

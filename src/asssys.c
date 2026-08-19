@@ -47,7 +47,7 @@ static void _ASS_MessageOutputString(const char *str)
 #elif defined __SYMBIAN32__
     /* v-final: no debug output channel. On the game path ASS_MessageOutputString
        is later replaced by buildputs (game.c), so jfaudiolib messages go into the
-       engine's own sw.log; until then they are dropped silently. */
+       engine's own log file; until then they are dropped silently. */
     (void)str;
 #else
     fputs(str, stderr);
